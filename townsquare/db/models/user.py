@@ -4,7 +4,7 @@ user.py
 """
 
 from . import db
-from sqlalchemy import Column, Date, Integer
+from sqlalchemy import Column, Date, Integer, UnicodeText, Unicode, Boolean
 from datetime import date
 from .role import Role
 
@@ -14,9 +14,19 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
+    username = Column(Unicode(500), unique=True)
+
     date_completed_orientation = Column(Date)
     date_completed_waiver_form = Column(Date)
     date_completed_code_of_conduct = Column(Date)
+
+    emergency_contact = Column(UnicodeText(length=300))
+
+    first_name = Column(Unicode(100))
+    last_name = Column(Unicode(100))
+
+    active = Column(Boolean, default=True)
+
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __init__(self, role_id=None):
@@ -25,6 +35,10 @@ class User(db.Model):
             role_id = Role.user().id
 
         self.role_id = role_id
+
+    @property
+    def name(self):
+        return '{} {}'.format(self.first_name, self.last_name)
 
     @property
     def completed_orientation(self):
@@ -61,7 +75,3 @@ class User(db.Model):
 
         else:
             self.date_completed_code_of_conduct = None
-
-
-
-
