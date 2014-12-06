@@ -19,7 +19,9 @@ class TownSquare(Flask):
         app = TownSquare(__name__)
 
         from townsquare.index import index
-
         app.register_blueprint(index)
+
+        from townsquare.db import db
+        app.init_extension(db)
 
         return app
