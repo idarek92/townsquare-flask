@@ -7,12 +7,15 @@ from . import db
 from sqlalchemy import Column, Date, Integer
 from datetime import date
 
+
 class User(db.Model):
 
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
     date_completed_orientation = Column(Date)
+    date_completed_waiver_form = Column(Date)
+    date_completed_code_of_conduct = Column(Date)
 
     @property
     def completed_orientation(self):
@@ -26,8 +29,6 @@ class User(db.Model):
         else:
             self.date_completed_orientation = None
 
-    date_completed_waiver_form = Column(Date)
-
     @property
     def completed_waiver_form(self):
         return self.date_completed_waiver_form is not None
@@ -39,9 +40,6 @@ class User(db.Model):
 
         else:
             self.date_completed_waiver_form = None
-
-
-    date_completed_code_of_conduct = Column(Date)
 
     @property
     def completed_code_of_conduct(self):

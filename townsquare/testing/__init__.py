@@ -7,12 +7,13 @@ writing the same code in tests. Use it extensively.
 from flask_testing import TestCase
 from townsquare import TownSquare
 from townsquare.db import db
-
+from townsquare.db.data import bootstrap
 
 class TownSquareTestCase(TestCase):
 
     def setUp(self):
         db.create_all()
+        bootstrap()
         
         return super(TownSquareTestCase, self).setUp()
     
