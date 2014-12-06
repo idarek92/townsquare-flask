@@ -10,6 +10,20 @@ from .role import Role
 
 
 class User(db.Model):
+    """
+    A user as it stands on our system.
+
+    For some details see:
+    https://github.com/sc3/townsquare-flask/issues/3
+
+    The 3 date_completed_* columns have to do with how
+    FreeGeek Chicago works. New volunteers need to go
+    through a orientation. They need to sign a waiver form
+    and agree to our code of conduct.
+
+    http://freegeekchicago.org/volunteer
+
+    """
 
     __tablename__ = 'users'
 
