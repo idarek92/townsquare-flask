@@ -1,6 +1,6 @@
 
 from townsquare.testing import TownSquareTestCase
-from townsquare.db import db, User
+from townsquare.db import db, User, Role
 from datetime import date
 
 
@@ -66,3 +66,6 @@ class TestUser(TownSquareTestCase):
         u.date_completed_code_of_conduct = date.today()
         self.assertTrue(u.completed_code_of_conduct)
 
+    def test_default_role(self):
+        u = User()
+        self.assertEquals(u.role_id, Role.user().id)

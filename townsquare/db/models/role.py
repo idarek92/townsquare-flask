@@ -11,13 +11,13 @@ DEFAULT_ROLES = {
 }
 
 
-
 class Role(db.Model):
 
     __tablename__ = 'roles'
 
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(length=50), unique=True)
+    accounts = db.relationship('User', backref='role', lazy='dynamic')
 
     @staticmethod
     def get_role_by_name(name):
@@ -54,5 +54,4 @@ class Role(db.Model):
     @property
     def is_system(self):
         return self == Role.system()
-
 

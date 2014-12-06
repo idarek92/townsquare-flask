@@ -6,6 +6,7 @@ user.py
 from . import db
 from sqlalchemy import Column, Date, Integer
 from datetime import date
+from .role import Role
 
 
 class User(db.Model):
@@ -16,6 +17,14 @@ class User(db.Model):
     date_completed_orientation = Column(Date)
     date_completed_waiver_form = Column(Date)
     date_completed_code_of_conduct = Column(Date)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
+    def __init__(self, role_id=None):
+
+        if role_id is None:
+            role_id = Role.user().id
+
+        self.role_id = role_id
 
     @property
     def completed_orientation(self):
