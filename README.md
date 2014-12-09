@@ -49,7 +49,7 @@ pip install -r requirements.txt
 Run the app:
 
 ```
-./application.py
+./town
 
 ```
 

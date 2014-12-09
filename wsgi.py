@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-application.py
+wsgi.py
 
 This is the file that is responsible for running the application and
 and other commands like the database migrations.
