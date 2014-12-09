@@ -13,7 +13,7 @@ from townsquare import TownSquare
 from flask_script import Manager
 
 application = TownSquare.create_app()
-manager = Manager(app)
+manager = Manager(application)
 
 
 if __name__ == '__main__':
