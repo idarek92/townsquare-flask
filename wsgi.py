@@ -12,7 +12,7 @@ It shouldn't have any extensive logic.
 from townsquare import TownSquare
 from flask_script import Manager
 
-app = TownSquare.create_app()
+application = TownSquare.create_app()
 manager = Manager(app)
 
 
