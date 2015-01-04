@@ -1,6 +1,3 @@
-townsquare-flask
-================
-
 What will TownSquare be?
 ========================
 
