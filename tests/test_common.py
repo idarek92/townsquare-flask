@@ -1,5 +1,5 @@
 import unittest
-from townsquare.common import assertInstance
+from townsquare.common import assert_instance
 
 class A(object):
     pass
@@ -10,15 +10,15 @@ class B(A):
 class TestAssertInstance(unittest.TestCase):
 
     def test_instance(self):
-        self.assertIsNone(assertInstance(1, int))
+        self.assertIsNone(assert_instance(1, int))
 
     def test_not_instance(self):
-        self.assertRaises(TypeError, assertInstance, 1, bool)
+        self.assertRaises(TypeError, assert_instance, 1, bool)
 
     def test_inheritance(self):
         # testing that we can inherit and pass argument still
-        self.assertIsNone(assertInstance(A(), A))
-        self.assertIsNone(assertInstance(B(), A))
+        self.assertIsNone(assert_instance(A(), A))
+        self.assertIsNone(assert_instance(B(), A))
 
-        self.assertRaises(TypeError, assertInstance, A(), B)
+        self.assertRaises(TypeError, assert_instance, A(), B)
 
