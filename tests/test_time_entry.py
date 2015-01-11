@@ -39,8 +39,11 @@ class TestTimeEntry(unittest.TestCase):
     def test_entry_duration(self):
 
         t = TimeEntry(start=D1, end=D2)
-        # how long
         self.assertEquals(t.duration, timedelta(3071))
+
+    def test_nones(self):
+        t = TimeEntry()
+        t.duration
 
 
 

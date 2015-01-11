@@ -23,8 +23,16 @@ class TimeEntry(db.Model):
     id = Column(Integer, primary_key=True)
 
     user_id = Column(Integer, ForeignKey('users.id'))
+    user = db.relationship(
+        'User',
+        backref=db.backref('time_entries', lazy='dynamic')
+    )
 
     # activity_id = Column(Integer, ForeignKey('activities.id'))
+    # activity = db.relationship(
+    #     'Activity',
+    #     backref=db.backref('time_entries', lazy='dynamic')
+    # )
 
     start_time = Column(DateTime)
     end_time = Column(DateTime)
