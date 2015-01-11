@@ -3,6 +3,7 @@ from . import db
 from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from datetime import datetime
 
+
 class TimeEntry(db.Model):
     """
     A time entry is used to record when a user needs to log
@@ -22,11 +23,18 @@ class TimeEntry(db.Model):
     id = Column(Integer, primary_key=True)
 
     user_id = Column(Integer, ForeignKey('users.id'))
+
     # activity_id = Column(Integer, ForeignKey('activities.id'))
 
     start_time = Column(DateTime)
     end_time = Column(DateTime)
 
-    def __init__(self):
-        self.start_time = datetime.utcnow()
+    def __init__(self, start=None, end=None):
+
+        self.start_time = start if start is not None else datetime.utcnow()
+        self.end_time = end
+
+    @property
+    def duration(self):
+        return self.end_time - self.start_time
 
