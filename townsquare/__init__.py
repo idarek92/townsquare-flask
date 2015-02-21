@@ -30,4 +30,7 @@ class TownSquare(Flask):
         from townsquare.api import UserResource
         UserResource.add_url_rules(app, rule_prefix='/api/0.1/users/')
 
+        from townsquare.api import ActivityResource
+        ActivityResource.add_url_rules(app, rule_prefix='/api/0.1/activities/')
+
         return app
