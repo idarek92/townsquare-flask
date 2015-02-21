@@ -1,11 +1,12 @@
 
-from restless.fl import FlaskResource
 from restless.preparers import FieldsPreparer
 
+from townsquare.common.rest import TownSquareResource
 from townsquare.db import User
 
 
-class UserResource(FlaskResource):
+class UserResource(TownSquareResource):
+    model = User
 
     preparer = FieldsPreparer(fields={
         'id': 'id',
@@ -15,6 +16,3 @@ class UserResource(FlaskResource):
         'active': 'active',
         'role_id': 'role_id'
     })
-
-    def list(self, *args, **kwargs):
-        return User.query.all()

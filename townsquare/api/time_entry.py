@@ -1,11 +1,12 @@
 
-from restless.fl import FlaskResource
 from restless.preparers import FieldsPreparer
 
+from townsquare.common.rest import TownSquareResource
 from townsquare.db import TimeEntry
 
 
-class TimeEntryResource(FlaskResource):
+class TimeEntryResource(TownSquareResource):
+    model = TimeEntry
 
     preparer = FieldsPreparer({
         'id': 'id',

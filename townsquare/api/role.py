@@ -1,16 +1,14 @@
 
-from restless.fl import FlaskResource
 from restless.preparers import FieldsPreparer
 
+from townsquare.common.rest import TownSquareResource
 from townsquare.db import Role
 
 
-class RoleResource(FlaskResource):
+class RoleResource(TownSquareResource):
+    model = Role
 
     preparer = FieldsPreparer({
         'id': 'id',
         'name': 'name'
     })
-
-    def list(self, *args, **kwargs):
-        return Role.query.all()
