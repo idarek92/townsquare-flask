@@ -29,7 +29,7 @@ Expanding
 Setup
 =====
 
-Make sure you are using Python 3.5! This app does not make any attempt
+Make sure you are using Python 3.4! This app does not make any attempt
 to be backwards compatible with older versions.
 
 ```
