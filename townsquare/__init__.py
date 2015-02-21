@@ -27,4 +27,7 @@ class TownSquare(Flask):
         from townsquare.db import db
         app.init_extension(db)
 
+        from townsquare.api import UserResource
+        UserResource.add_url_rules(app, rule_prefix='/api/0.1/users/')
+
         return app
