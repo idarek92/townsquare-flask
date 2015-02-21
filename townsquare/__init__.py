@@ -18,6 +18,9 @@ class TownSquare(Flask):
 
         app = TownSquare(__name__)
 
+        from .settings import Settings
+        app.config.from_object(Settings)
+
         from townsquare.index import index
         app.register_blueprint(index)
 
