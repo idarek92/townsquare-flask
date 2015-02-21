@@ -33,4 +33,11 @@ class TownSquare(Flask):
         from townsquare.api import ActivityResource
         ActivityResource.add_url_rules(app, rule_prefix='/api/0.1/activities/')
 
+        from townsquare.api import RoleResource
+        RoleResource.add_url_rules(app, rule_prefix='/api/0.1/roles/')
+
+        from townsquare.api import TimeEntryResource
+        TimeEntryResource.add_url_rules(app, rule_prefix='/api/0.1/time-entries/')
+
+
         return app
