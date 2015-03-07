@@ -1,5 +1,6 @@
 
 from flask import Flask
+from flask_cors import CORS
 
 
 class TownSquare(Flask):
@@ -17,6 +18,7 @@ class TownSquare(Flask):
     def create_app(config_name=None):
 
         app = TownSquare(__name__)
+        CORS(app, resources={r"/api/*": {"origins": "*"}})
 
         from .settings import Settings
         app.config.from_object(Settings)
