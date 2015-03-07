@@ -16,6 +16,13 @@ application = TownSquare.create_app()
 manager = Manager(application)
 
 
+@manager.command
+def create_db():
+    from townsquare.db import db
+    db.create_all()
+
+
+
 if __name__ == '__main__':
 
     manager.run(default_command='runserver')

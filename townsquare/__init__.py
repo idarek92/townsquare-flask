@@ -1,5 +1,6 @@
 
 from flask import Flask
+from flask_cors import CORS
 
 
 class TownSquare(Flask):
@@ -17,11 +18,28 @@ class TownSquare(Flask):
     def create_app(config_name=None):
 
         app = TownSquare(__name__)
+        CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+        from .settings import Settings
+        app.config.from_object(Settings)
 
         from townsquare.index import index
         app.register_blueprint(index)
 
         from townsquare.db import db
         app.init_extension(db)
+
+        from townsquare.api import UserResource
+        UserResource.add_url_rules(app, rule_prefix='/api/0.1/users/')
+
+        from townsquare.api import ActivityResource
+        ActivityResource.add_url_rules(app, rule_prefix='/api/0.1/activities/')
+
+        from townsquare.api import RoleResource
+        RoleResource.add_url_rules(app, rule_prefix='/api/0.1/roles/')
+
+        from townsquare.api import TimeEntryResource
+        TimeEntryResource.add_url_rules(app, rule_prefix='/api/0.1/time-entries/')
+
 
         return app
